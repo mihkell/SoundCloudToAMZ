@@ -24,15 +24,15 @@ public class SoundCloudAccessData implements AccessData {
 
     @Override
     public File getFile(URI url, String fileName, String fileExtentsion) throws IOException {
-        InputStream content = null;
+        InputStream inStream = null;
         OutputStream outStream = null;
         File file;
         try {
-            content = getInputStream(url);
-            outStream = getOuputStream(content);
+            inStream = getInputStream(url);
+            outStream = getOuputStream(inStream);
             file = getTempFile(outStream, fileName, fileExtentsion);
         } finally {
-            IOUtils.closeQuietly(content);
+            IOUtils.closeQuietly(inStream);
             IOUtils.closeQuietly(outStream);
         }
         return file;
