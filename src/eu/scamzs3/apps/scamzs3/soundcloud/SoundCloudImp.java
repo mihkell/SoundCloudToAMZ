@@ -3,7 +3,6 @@ package eu.scamzs3.apps.scamzs3.soundcloud;
 import java.net.URI;
 import java.util.List;
 
-
 public class SoundCloudImp implements SoundCloud {
 
     private Long userId;

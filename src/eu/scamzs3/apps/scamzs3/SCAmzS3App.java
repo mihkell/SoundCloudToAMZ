@@ -16,15 +16,15 @@ import eu.scamzs3.apps.scamzs3.soundcloud.SoundCloudImp;
 public class SCAmzS3App {
 
     final static Logger logger = Logger.getLogger(SCAmzS3App.class);
-    
+
     private SaveData saveData;
     private AccessData accessData;
     private Scanner scn = new Scanner(System.in);
     private SoundCloud soundCloud = new SoundCloudImp();
 
     private String fileExtentsion = ".mp3";
-    
-    public SCAmzS3App (AccessData accessData, SaveData saveData ){
+
+    public SCAmzS3App ( AccessData accessData, SaveData saveData ){
         this.accessData = accessData;
         this.saveData = saveData;
     }
@@ -42,22 +42,22 @@ public class SCAmzS3App {
         Long trackId = getMp3IdToBeDownloaded();
 
         File file = getMP3(trackId);
-        
+
         boolean fileSaved = saveFile(file);
-        
-        if(fileSaved){
+
+        if (fileSaved) {
             System.out.println("File saved!");
-        }else{
+        } else {
             System.out.println("Unable to save file");
         }
-        
+
     }
 
     private List<SCTrack> getTracks(Long userId) {
-        
+
         soundCloud.setId(userId);
         List<SCTrack> tracks = soundCloud.getTracks();
-        
+
         return tracks;
     }
 
@@ -74,7 +74,7 @@ public class SCAmzS3App {
     private File getMP3(Long trackId) {
         File file = null;
         try {
-            file = accessData.getFile(soundCloud.getTrackUri(trackId), Long.toString(trackId), fileExtentsion );
+            file = accessData.getFile(soundCloud.getTrackUri(trackId), Long.toString(trackId), fileExtentsion);
         } catch (IOException e1) {
             System.out.println("Wasn't able to access(download) the file.");
             e1.printStackTrace();
@@ -89,7 +89,8 @@ public class SCAmzS3App {
     }
 
     private void showTrackList(List<SCTrack> tracks) {
-        // Usually I use string builder here, but at this instance JVM will do the job
+        // Usually I use string builder here, but at this instance JVM will do
+        // the job
         // for me.
         System.out.println("*Track ID's will only be shown when tracks can be downloaded");
         String s;
@@ -98,7 +99,7 @@ public class SCAmzS3App {
             s += track.getName();
             s += "; ";
             if (track.isDownloadAble()) {
-                s+= "Track id is ";
+                s += "Track id is ";
                 s += track.getId();
             }
             System.out.println(s);
@@ -119,7 +120,7 @@ public class SCAmzS3App {
     }
 
     public void setSaveData(SaveData saveData) {
-        if(saveData == null){
+        if (saveData == null) {
             return;
         }
         this.saveData = saveData;
@@ -130,7 +131,7 @@ public class SCAmzS3App {
     }
 
     public void setAccessData(AccessData accessData) {
-        if(accessData == null){
+        if (accessData == null) {
             return;
         }
         this.accessData = accessData;

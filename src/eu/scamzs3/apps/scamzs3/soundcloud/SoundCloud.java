@@ -10,6 +10,8 @@ import java.util.List;
 public interface SoundCloud {
 
     List<SCTrack> getTracks();
+
     void setId(Long id);
+
     URI getTrackUri(Long trackId);
 }

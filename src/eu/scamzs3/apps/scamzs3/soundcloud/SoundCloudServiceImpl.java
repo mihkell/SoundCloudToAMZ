@@ -18,7 +18,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-
 public class SoundCloudServiceImpl implements SoundCloudService {
 
     final static Logger logger = Logger.getLogger(SoundCloudServiceImpl.class);
@@ -33,7 +32,7 @@ public class SoundCloudServiceImpl implements SoundCloudService {
 
     @Override
     public List<SCTrack> getTracksJson(Long userId) {
-        
+
         String responseString = getJsonString(userId);
         List<SCTrack> tracks = getResponseAsTracks(responseString);
 
@@ -45,14 +44,13 @@ public class SoundCloudServiceImpl implements SoundCloudService {
         JsonParser parser = new JsonParser();
         JsonElement responseJson = parser.parse(responseString);
         JsonArray trackJsonArray = responseJson.getAsJsonArray();
-        
+
         JsonElement array_element;
         JsonObject trackJson;
 
         List<SCTrack> tracks = new ArrayList<>();
         SCTrack track;
-        
-        
+
         for (int i = 0; i < trackJsonArray.size(); i++) {
             array_element = trackJsonArray.get(i);
             trackJson = array_element.getAsJsonObject();
@@ -72,7 +70,7 @@ public class SoundCloudServiceImpl implements SoundCloudService {
         HttpClientBuilder clientBuilder = HttpClientBuilder.create();
         CloseableHttpClient httpClient = clientBuilder.build();
         HttpGet get = new HttpGet(url);
-        
+
         String responseString = "";
         try {
             CloseableHttpResponse httpResponse = httpClient.execute(get);
@@ -82,7 +80,7 @@ public class SoundCloudServiceImpl implements SoundCloudService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         return responseString;
     }
 

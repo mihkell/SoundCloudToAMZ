@@ -14,5 +14,6 @@ import java.util.List;
 public interface SoundCloudService {
 
     URI getTrackURL(Long trackId);
+
     List<SCTrack> getTracksJson(Long userId);
 }
