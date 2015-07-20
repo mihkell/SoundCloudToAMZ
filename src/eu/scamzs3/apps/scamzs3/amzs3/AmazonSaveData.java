@@ -49,7 +49,7 @@ public class AmazonSaveData implements SaveData {
             // get the property value and print it out
             accessKeyId = prop.getProperty("aws_access_key_id");
             secretAccessKey = prop.getProperty("aws_secret_access_key");
-            secretAccessKey = prop.getProperty("aws_bucket_name");
+            bucketName = prop.getProperty("aws_bucket_name");
 
         } catch (IOException ex) {
             ex.printStackTrace();
