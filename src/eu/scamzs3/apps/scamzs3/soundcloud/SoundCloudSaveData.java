@@ -31,9 +31,9 @@ public class SoundCloudSaveData implements SaveData {
         try {
 
             Path mp3Path = Paths.get(fileName + fileExtentsion);
-            File file = new File(mp3Path.toAbsolutePath().toString());
-            if (file.exists()) {
-                file.delete();
+            File oldFile = new File(mp3Path.toAbsolutePath().toString());
+            if (oldFile.exists()) {
+                oldFile.delete();
             }
 
             Files.createFile(mp3Path.toAbsolutePath());
